@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Bash script that displays lines containing the bash word.
+
+process_name="4-to_infinity_and_beyond"
+pid=$(pgrep -f "$process_name")
+kill -TERM "$pid"
