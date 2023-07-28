@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
 # Bash script that displays lines containing the bash word.
 
-processes=$(pidof "bash")
-
-for process_id in $processes
-do
-    echo "$process_id bash"
-done
+pgrep -l "bash"
