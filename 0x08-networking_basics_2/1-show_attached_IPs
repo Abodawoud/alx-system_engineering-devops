@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Bash script that displays all active IPv4 IPs on the machine it’s executed on
+
+ip_addresses=$(hostname -I)
+for ip in "${ip_addresses[@]}";
+do
+    printf  "%s\n" "$ip"
+done
