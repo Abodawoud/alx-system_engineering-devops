@@ -2,5 +2,5 @@
 # Configure haproxy loadbalacner
 sudo apt -y update
 sudo apt -y install haproxy
-sudo sed -i '$a\\nfrontend http_front\n\tbind *:80\n\tdefault_backend http_back\n\tmode http\n\nbackend http_back\n\tbalance roundrobin\n\tserver 360686-web-01 52.87.230.156 check\n\tserver 360686-web-02 100.26.151.67 check' /etc/haproxy/haproxy.cfg
+sudo sed -i '$a\\nfrontend http_front\n\tbind *:80\n\tdefault_backend http_back\n\tmode http\n\nbackend http_back\n\tbalance roundrobin\n\tserver 360686-web-01 52.87.230.156:80 check\n\tserver 360686-web-02 100.26.151.67:80 check' /etc/haproxy/haproxy.cfg
 sudo service haproxy restart
