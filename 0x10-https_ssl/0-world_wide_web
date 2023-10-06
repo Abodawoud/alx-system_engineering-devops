@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# World wide web
 
 get_dns_info() {
     local domain="$1"
