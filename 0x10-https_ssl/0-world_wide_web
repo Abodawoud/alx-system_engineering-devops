@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+
+get_dns_info() {
+    local domain="$1"
+    local subdomain="$2"
+    local dns_info
+    local record_type
+    local ip_address
+    dns_info=$(dig "$subdomain.$domain")
+    record_type=$(echo "$dns_info" | awk -v pattern="^${subdomain}.${domain}." '$0 ~ pattern {print $4}')
+    ip_address=$(dig +short "$subdomain.$domain")
+
+    echo "The subdomain $subdomain is a $record_type record and points to $ip_address"
+}
+
+if [[ $# -eq 2 ]]; then
+    domain="$1"
+    subdomain="$2"
+    get_dns_info "$domain" "$subdomain"
+else
+    domain="$1"
+    default_subdomains=("www" "lb-01" "web-01" "web-02")
+    for subdomain in "${default_subdomains[@]}"; do
+        get_dns_info "$domain" "$subdomain"
+    done
+fi
