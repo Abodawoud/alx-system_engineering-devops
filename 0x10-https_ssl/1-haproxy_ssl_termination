@@ -33,14 +33,13 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend haproxy_balancer
-    bind *:80
-    bind *:443 ssl crt /etc/haproxy/certs/abodawoud.tech.pem
-    http-request redirect scheme https unless { ssl_fc }
-    mode http
-    default_backend webservers
+frontend www-https
+        bind *:443 ssl crt /etc/letsencrypt/live/www.abodawoud.tech/fullchain.pem
+        default_backend http_back
+        reqadd X-Forwarded-Proto:\ https
+        mode http
 
-backend webservers
-    balance roundrobin
-    server 336956-web-01 52.87.230.156:80 check
-    server 336956-web-02 100.26.151.67:80 check
+backend http_back
+        balance roundrobin
+        server 360686-web-01 52.87.230.156:80 check
+        server 360686-web-02 100.26.151.67:80 check
