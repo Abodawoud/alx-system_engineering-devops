@@ -3,10 +3,16 @@ package { 'nginx':
   ensure => installed,
 }
 
+exec { 'become_root':
+  command     => 'sudo -i',
+  path        => ['/usr/bin', '/bin'],
+  refreshonly => true,
+}
+
 service { 'nginx':
   ensure  => 'running',
   enable  => true,
-  require => Package['nginx'],
+  require => [Package['nginx'], Exec['become_root']],
 }
 
 file { '/var/www/html/index.nginx-debian.html':
