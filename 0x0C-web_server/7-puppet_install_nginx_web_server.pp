@@ -31,18 +31,30 @@ file { '/etc/nginx/sites-available/default':
   ensure  => present,
   content => '
     server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+            listen 80 default_server;
+            listen [::]:80 default_server;
 
-        root /var/www/html;
-        index index.html;
+            root /var/www/html;
 
-        location /redirect_me {
-            return 301 https://www.linkedin.com/in/abodawoud/;
-        }
-    }
+            index index.html index.htm index.nginx-debian.html;
+
+            server_name abodawoud.tech;
+
+            error_page 404 /custom_404.html;
+
+            location /redirect_me {
+                    return 301 https://www.linkedin.com/in/abodawoud/;
+            }
+
+            location / {
+                    root /var/www/html;
+                    index index.nginx-debian.html;
+                    try_files $uri $uri/ =404;
+            }
+}
   ',
   require => Package['nginx'],
+  replace => 'true',
 }
 
 service { 'nginx':
