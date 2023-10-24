@@ -32,4 +32,4 @@ if __name__ == "__main__":
             print(f"Employee {get_users_data.get('name')} is done with \
 tasks({count}/{todos_length}):")
             for title in list_completed_todos:
-                print(f'\t{title}')
+                print(f'\t {title}')
