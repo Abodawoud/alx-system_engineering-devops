@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
                     writer.writerow({
                         "USER_ID": f"{get_users_data.get('id')}",
-                        "USERNAME": get_users_data.get('name'),
+                        "USERNAME": get_users_data.get('username'),
                         "TASK_COMPLETED_STATUS": todo_completed_status,
                         "TASK_TITLE": todo_title
                     })
