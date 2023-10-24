@@ -31,7 +31,7 @@ if __name__ == "__main__":
                     fieldnames=fieldnames)
                 for todo in get_todos_data:
                     todo_completed_status = "True" if todo.get(
-                        'completed') else "Flase"
+                        'completed') else "False"
                     todo_title = todo.get('title')
 
                     writer.writerow({
