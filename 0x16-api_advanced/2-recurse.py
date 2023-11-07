@@ -6,7 +6,7 @@ import requests
 def recurse(subreddit, hot_list=[], after=None):
     """Get Top ten from reddit API"""
 
-    api_url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=9&after={after}"
+    api_url = f"https://www.reddit.com/r/{subreddit}/hot.json&after={after}"
 
     headers = {"User-Agent": "MyApp/1.0"}
     response = requests.get(api_url, headers=headers, allow_redirects=False)
