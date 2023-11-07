@@ -2,6 +2,7 @@
 """Using requests lib"""
 import requests
 
+
 def number_of_subscribers(subreddit):
     """Get Subscriber from reddit API"""
     api_url = f"https://www.reddit.com/r/{subreddit}/about.json"
