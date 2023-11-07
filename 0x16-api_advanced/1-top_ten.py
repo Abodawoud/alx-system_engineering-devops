@@ -15,7 +15,5 @@ def top_ten(subreddit):
         data = response.json()
         for i in range(0, 10):
             print(data["data"]["children"][i]["data"]["title"])
-    elif response.status_code == 302:
-        print(None)
     else:
         print(None)
