@@ -11,6 +11,9 @@ def recurse(subreddit, hot_list=[], after=None):
     headers = {"User-Agent": "MyApp/1.0"}
     response = requests.get(api_url, headers=headers, allow_redirects=False)
 
+    if response.status_code != 200:
+        return None
+
     if response.status_code == 200:
         data = response.json()
 
