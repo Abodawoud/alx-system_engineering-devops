@@ -8,8 +8,7 @@ file { '/etc/security/limits.conf':
 }
 
 exec { 'reload_pam':
-  command     => '/usr/sbin/pam-auth-update --force',
-  environment => ['TTY=0'],  # Set TTY to 0 to avoid terminal interaction
+  command     => '/bin/pkill -HUP -u holberton bash',
   refreshonly => true,
   subscribe   => File['/etc/security/limits.conf'],
 }
