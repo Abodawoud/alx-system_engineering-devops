@@ -7,4 +7,11 @@ file { '/etc/default/nginx':
 #  Example: ULIMIT="-n 4096"
 ULIMIT="-n 4096"
 ',
+  notify  => Exec['restart_nginx'],
+}
+
+exec { 'restart_nginx':
+  command     => '/bin/systemctl restart nginx',  # Adjust the command as per your system's init system
+  refreshonly => true,
+  subscribe   => File['/etc/default/nginx'],
 }
