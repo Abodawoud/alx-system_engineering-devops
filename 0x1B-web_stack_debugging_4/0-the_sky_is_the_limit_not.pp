@@ -1,3 +1,4 @@
+# default limit
 file { '/etc/default/nginx':
   ensure  => file,
   content => '# /etc/default/nginx
