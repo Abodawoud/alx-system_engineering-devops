@@ -11,7 +11,7 @@ ULIMIT="-n 4096"
 }
 
 exec { 'restart_nginx':
-  command     => '/bin/systemctl restart nginx',  # Adjust the command as per your system's init system
+  command     => '/bin/systemctl restart nginx || /usr/sbin/service nginx restart',  # Adjust the commands as per your system's init system
   refreshonly => true,
   subscribe   => File['/etc/default/nginx'],
 }
